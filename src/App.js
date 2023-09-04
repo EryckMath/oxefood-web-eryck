@@ -1,7 +1,7 @@
 import { Segment } from 'semantic-ui-react';
 //import logo from './logo.svg';
 import './App.css';
-import Home from './views/cliente/FormCliente'
+import Home from './views/entregador/FormEntregador'
 
 function App() {
   return (
