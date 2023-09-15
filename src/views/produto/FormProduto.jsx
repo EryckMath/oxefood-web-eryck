@@ -1,12 +1,43 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
+import MenuSistema from "../../MenuSistema";
 
-export default function FormCliente() {
+export default function FormProduto() {
+
+    const [titulo, setTitulo] = useState();
+    const [codigo, setCodigo] = useState();
+    const [descricao, setDescricao] = useState();
+    const [valorUnit, setValorUnit] = useState();
+    const [tempoEntregaMin, setTempoEntregaMin] = useState();
+    const [tempoEntregaMax, setTempoEntregaMax] = useState();
+
+    function salvar() {
+
+		let produtoRequest = {
+		     titulo: titulo,
+		     codigo: codigo,
+		     descricao: descricao,
+		     valorUnit: valorUnit,
+		     tempoEntregaMin: tempoEntregaMin,
+             tempoEntregaMax: tempoEntregaMax
+		}
+	
+		axios.post("http://localhost:8080/api/produto", produtoRequest)
+		.then((response) => {
+		     console.log('Produto cadastrado com sucesso.')
+		})
+		.catch((error) => {
+		     console.log('Erro ao incluir um produto.')
+		})
+	}
 
     return (
 
         <div>
+
+            <MenuSistema />
 
             <div style={{ marginTop: '3%' }}>
 
@@ -29,6 +60,8 @@ export default function FormCliente() {
                                     width={50}
                                     maxLength="300"
                                     placeholder="Informe o título do produto"
+                                    value={titulo}
+                                    onChange={e => setTitulo(e.target.value)}
                                 />
 
                                 <Form.Input
@@ -40,6 +73,8 @@ export default function FormCliente() {
                                         required
                                         mask=""
                                         placeholder="Informe o código do produto"
+                                        value={codigo}
+                                        onChange={e => setCodigo(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -55,6 +90,8 @@ export default function FormCliente() {
                                     <InputMask
                                         mask=""
                                         placeholder="Informe a descrição do produto"
+                                        value={descricao}
+                                        onChange={e => setDescricao(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -70,6 +107,8 @@ export default function FormCliente() {
                                         required
                                         mask=""
                                         placeholder=""
+                                        value={valorUnit}
+                                        onChange={e => setValorUnit(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -81,6 +120,8 @@ export default function FormCliente() {
                                         required
                                         mask=""
                                         placeholder="30"
+                                        value={tempoEntregaMin}
+                                        onChange={e => setTempoEntregaMin(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -92,6 +133,8 @@ export default function FormCliente() {
                                         required
                                         mask=""
                                         placeholder="40"
+                                        value={tempoEntregaMax}
+                                        onChange={e => setTempoEntregaMax(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -121,6 +164,7 @@ export default function FormCliente() {
                                 labelPosition='left'
                                 color='blue'
                                 floated='right'
+                                onClick={() => salvar()}
                             >
                                 <Icon name='save' />
                                 Salvar
