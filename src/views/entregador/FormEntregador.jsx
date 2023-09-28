@@ -62,7 +62,7 @@ export default function FormEntregador() {
 
                 <Container textAlign='justified' >
 
-                    <h2> <span style={{ color: 'darkgray' }}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
+                    <h2> <span style={{ color: 'darkgray' }}> Entregador &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
 
                     <Divider />
 
@@ -128,16 +128,18 @@ export default function FormEntregador() {
                                     required
                                     fluid
                                     label='Fone Celular'
-                                    width={8} />
-                                value={foneCelular}
-                                onChange={e => setFoneCelular(e.target.value)}
+                                    width={8}
+                                    value={foneCelular}
+                                    onChange={e => setFoneCelular(e.target.value)}
+                                />
 
                                 <Form.Input
                                     fluid
                                     label='Fone Fixo'
-                                    width={8} />
-                                value={foneFixo}
-                                onChange={e => setFoneFixo(e.target.value)}
+                                    width={8}
+                                    value={foneFixo}
+                                    onChange={e => setFoneFixo(e.target.value)}
+                                />
 
                                 <Form.Input
                                     fluid
