@@ -1,4 +1,5 @@
 import axios from "axios";
+import {mensagemErro, notifyError, notifySuccess } from '../../views/util/Util';
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import InputMask from 'react-input-mask';
@@ -60,8 +61,12 @@ export default function FormFornecedor() {
                 .catch((error) => { console.log('Erro ao alter o fornecedor.') })
         } else { //Cadastro:
             axios.post("http://localhost:8080/api/fornecedor", fornecedorRequest)
-                .then((response) => { console.log('Fornecedor cadastrado com sucesso.') })
-                .catch((error) => { console.log('Erro ao incluir o fornecedor.') })
+                .then((response) => { notifySuccess('Fornecedor cadastrado com sucesso.') })
+                .catch((error) => { if(error.response){
+                    notifyError(error.response.data.errors[0].defaultMessage)
+                }else{
+                    notifyError(mensagemErro)
+                } })
         }
     }
 
